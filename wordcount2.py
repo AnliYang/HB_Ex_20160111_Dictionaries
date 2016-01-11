@@ -1,14 +1,12 @@
-# the function
-def create_dict(text_file):
+import sys
+def create_dict(argv):
     """prints out how many times each word shows up in the text file"""
     
 #     create an empty dictionary
     results = {}
 
 #         loop through the list and check if the word is in the dictionary
-    text = open(text_file)
-    
-    words = []
+    text = open(argv)
 
     for line in text:
         line = line.rstrip()
@@ -24,7 +22,8 @@ def create_dict(text_file):
         print key, value
 
     text.close()
-
+print sys.argv
+create_dict(sys.argv[1])
 # create_dict(x)
 #         increase count +1
 #         if word is not in the dictionary, add the word
