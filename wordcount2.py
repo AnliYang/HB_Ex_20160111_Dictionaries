@@ -1,9 +1,14 @@
 import sys
+import re
+import collections
+
+
 def create_dict(argv):
     """prints out how many times each word shows up in the text file"""
     
 #     create an empty dictionary
     results = {}
+    results2 = []
 
 #         loop through the list and check if the word is in the dictionary
     text = open(argv)
@@ -13,13 +18,21 @@ def create_dict(argv):
         line = line.split(" ")
 
         for word in line:
-            if word in results:
-                results[word] += 1
-            else:
-                results[word] = 1
+            word = word.translate(None, '~!@#$%^&*()_+<>?:"{}|/.,\';\][=-]')
+            word = word.lower()
+            results2.append(word)
 
-    for key, value in results.iteritems():
-        print key, value
+            # if word in results:
+            #     results[word] += 1
+            # else:
+            #     results[word] = 1
+
+    results2 = collections.Counter(results2)
+
+    # for key, value in results.iteritems():
+    #     print key, value
+    for word in results2:
+        print word, results2[word]
 
     text.close()
 print sys.argv
